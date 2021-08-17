@@ -11,12 +11,17 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Very basic functions to perform standard opereations on Files.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Get a local file.
+- Write a file as a String.
+- Read a file contents as a String.
+- Remove a file.
+- Create a Directory.
+- Check a file size.
+
 
 ## Getting started
 
