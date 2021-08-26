@@ -37,6 +37,14 @@ class LocalStorage {
     return _directory.create();
   }
 
+  //Delete all files in the given directory
+  Future<void> clearDirectoryFiles({required String directoryName}) async {
+    final _path = await _localPath;
+    final directory = Directory('$_path/$directoryName');
+    directory.deleteSync(recursive: true);
+    await createDirectory(directoryName: directoryName);
+  }
+
   String checkFileSize({required File file}) {
     var bytes = file.lengthSync();
     if (bytes <= 0) return "0 B";
