@@ -52,6 +52,16 @@ class LocalStorage {
     return directory.listSync();
   }
 
+  //Move a file from one directory to another
+  Future<void> moveFile({
+    required String id,
+    required String fromDirectoryName,
+    required String toDirectoryName,
+  }) async {
+    final _file = File('$fromDirectoryName/$id');
+    await _file.rename('$toDirectoryName/$id');
+  }
+
   String checkFileSize({required File file}) {
     var bytes = file.lengthSync();
     if (bytes <= 0) return "0 B";
