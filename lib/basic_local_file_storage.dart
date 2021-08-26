@@ -45,6 +45,13 @@ class LocalStorage {
     await createDirectory(directoryName: directoryName);
   }
 
+  //Get all the files in a directory
+  Future<List<FileSystemEntity>> allDirectoryFiles({required String directoryName}) async {
+    final _path = await _localPath;
+    final directory = Directory('$_path/$directoryName');
+    return directory.listSync();
+  }
+
   String checkFileSize({required File file}) {
     var bytes = file.lengthSync();
     if (bytes <= 0) return "0 B";
