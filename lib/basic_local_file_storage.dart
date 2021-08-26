@@ -55,11 +55,11 @@ class LocalStorage {
   //Move a file from one directory to another
   Future<void> moveFile({
     required String id,
-    required String fromDirectoryName,
-    required String toDirectoryName,
+    required String fromPath,
+    required String toPath,
   }) async {
-    final _file = File('$fromDirectoryName/$id');
-    await _file.rename('$toDirectoryName/$id');
+    final _file = File(fromPath);
+    await _file.rename(toPath);
   }
 
   String checkFileSize({required File file}) {
