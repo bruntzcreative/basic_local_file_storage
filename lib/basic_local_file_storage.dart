@@ -54,7 +54,6 @@ class LocalStorage {
 
   //Move a file from one directory to another
   Future<void> moveFile({
-    required String id,
     required String fromPath,
     required String toPath,
   }) async {
