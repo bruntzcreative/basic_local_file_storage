@@ -31,6 +31,8 @@ class LocalStorage {
     return _file.delete();
   }
 
+
+  //TODO change this to accept different paths instead of just a name
   Future<Directory> createDirectory({required String directoryName}) async {
     final _path = await _localPath;
     final _directory = Directory('$_path/$directoryName');
@@ -38,17 +40,16 @@ class LocalStorage {
   }
 
   //Delete all files in the given directory
-  Future<void> clearDirectoryFiles({required String directoryName}) async {
-    final _path = await _localPath;
-    final directory = Directory('$_path/$directoryName');
+  Future<void> clearDirectoryFiles({required String path}) {
+    final directory = Directory(path);
     directory.deleteSync(recursive: true);
-    await createDirectory(directoryName: directoryName);
+    final _directory = Directory(path);
+    return _directory.create();
   }
 
   //Get all the files in a directory
-  Future<List<FileSystemEntity>> allDirectoryFiles({required String directoryName}) async {
-    final _path = await _localPath;
-    final directory = Directory('$_path/$directoryName');
+  Future<List<FileSystemEntity>> allDirectoryFiles({required String path}) async {
+    final directory = Directory(path);
     return directory.listSync();
   }
 
