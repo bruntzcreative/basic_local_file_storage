@@ -31,7 +31,6 @@ class LocalStorage {
     return _file.delete();
   }
 
-
   //TODO change this to accept different paths instead of just a name
   Future<Directory> createDirectory({required String directoryName}) async {
     final _path = await _localPath;
@@ -48,7 +47,7 @@ class LocalStorage {
   }
 
   //Get all the files in a directory
-  Future<List<FileSystemEntity>> allDirectoryFiles({required String path}) async {
+  List<FileSystemEntity> allDirectoryFiles({required String path}) {
     final directory = Directory(path);
     return directory.listSync();
   }
