@@ -11,9 +11,15 @@ class LocalStorage {
     return directory.path;
   }
 
-  Future<File> localFile({required String filePath}) async {
+  Future<File> readLocalFile({required String fileName}) async {
     final path = await _localPath;
-    return File('$path/$filePath');
+    return File('$path/$fileName');
+  }
+
+  Future<File> writeLocalFile({required String fileName, required String data}) async {
+    final path = await _localPath;
+    final _file = File('$path/$fileName');
+    return _file.writeAsString(data);
   }
 
   Future<File> writeFile({required String filePath, required String data}) async {
