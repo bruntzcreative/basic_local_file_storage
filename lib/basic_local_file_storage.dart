@@ -11,6 +11,13 @@ class LocalStorage {
     return directory.path;
   }
 
+  Future<bool> fileExists({
+    required String filePath,
+  }) async {
+    final _file = File(filePath);
+    return _file.exists();
+  }
+
   Future<File?> readLocalFile({required String fileName}) async {
     final path = await _localPath;
     final file = File('$path/$fileName');
@@ -20,13 +27,15 @@ class LocalStorage {
     return null;
   }
 
-  Future<File> writeLocalFile({required String fileName, required String data}) async {
+  Future<File> writeLocalFile(
+      {required String fileName, required String data}) async {
     final path = await _localPath;
     final _file = File('$path/$fileName');
     return _file.writeAsString(data);
   }
 
-  Future<File> writeFile({required String filePath, required String data}) async {
+  Future<File> writeFile(
+      {required String filePath, required String data}) async {
     final _file = File(filePath);
     return _file.writeAsString(data);
   }
