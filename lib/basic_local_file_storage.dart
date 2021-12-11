@@ -6,7 +6,7 @@ import 'dart:math';
 import 'package:path_provider/path_provider.dart';
 
 class LocalStorage {
-  Future<String> get _localPath async {
+  Future<String> get localPath async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
   }
@@ -19,7 +19,7 @@ class LocalStorage {
   }
 
   Future<File?> readLocalFile({required String fileName}) async {
-    final path = await _localPath;
+    final path = await localPath;
     final file = File('$path/$fileName');
     if (file.existsSync()) {
       return file;
@@ -29,7 +29,7 @@ class LocalStorage {
 
   Future<File> writeLocalFile(
       {required String fileName, required String data}) async {
-    final path = await _localPath;
+    final path = await localPath;
     final _file = File('$path/$fileName');
     return _file.writeAsString(data);
   }
@@ -52,7 +52,7 @@ class LocalStorage {
 
   //TODO change this to accept different paths instead of just a name
   Future<Directory> createDirectory({required String directoryName}) async {
-    final _path = await _localPath;
+    final _path = await localPath;
     final _directory = Directory('$_path/$directoryName');
     return _directory.create();
   }
@@ -82,6 +82,7 @@ class LocalStorage {
 
   String checkFileSize({required File file}) {
     var bytes = file.lengthSync();
+    
     if (bytes <= 0) return "0 B";
     const suffixes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
     var i = (log(bytes) / log(1024)).floor();
