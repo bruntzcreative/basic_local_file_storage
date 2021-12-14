@@ -45,6 +45,11 @@ class LocalStorage {
     return _file.readAsString();
   }
 
+  String readFileSync({required String filePath}) {
+    final _file = File(filePath);
+    return _file.readAsStringSync();
+  }
+
   Future<void> removeFile({required String filePath}) {
     final _file = File(filePath);
     return _file.delete();
