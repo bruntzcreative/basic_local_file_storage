@@ -16,9 +16,9 @@ class LocalStorage {
     return directory.path;
   }
 
-  Future<FileSystemEntity> removeTempDirFile(String name) async {
+  Future<FileSystemEntity> removeTempDirFile({required String fileName}) async {
     final path = await tempDirPath;
-    return File('$path/$name').delete();
+    return File('$path/$fileName').delete();
   }
 
   Future<String> writeTempDirFile(
