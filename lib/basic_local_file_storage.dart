@@ -11,6 +11,24 @@ class LocalStorage {
     return directory.path;
   }
 
+  Future<String> get tempDirPath async {
+    final directory = await getTemporaryDirectory();
+    return directory.path;
+  }
+
+  Future<FileSystemEntity> removeTempDirFile(String name) async {
+    final path = await tempDirPath;
+    return File('$path/$name').delete();
+  }
+
+  Future<String> writeTempDirFile(
+      {required String fileName, required String contents}) async {
+    final path = await tempDirPath;
+    final file = File('$path/$fileName');
+    await file.writeAsString(contents);
+    return file.path;
+  }
+
   Future<bool> fileExists({
     required String filePath,
   }) async {
@@ -87,7 +105,7 @@ class LocalStorage {
 
   String checkFileSize({required File file}) {
     var bytes = file.lengthSync();
-    
+
     if (bytes <= 0) return "0 B";
     const suffixes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
     var i = (log(bytes) / log(1024)).floor();
