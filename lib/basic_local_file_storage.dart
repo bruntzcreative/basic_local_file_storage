@@ -21,6 +21,16 @@ class LocalStorage {
     return directory.path;
   }
 
+  Future<void> clearCache() async {
+    final directory = await getTemporaryDirectory();
+    final files = directory.listSync();
+    print(files.length);
+    for (var item in files) {
+      await item.delete();
+    }
+    print(directory.listSync().length);
+  }
+
   Future<FileSystemEntity> removeTempDirFile({required String fileName}) async {
     final path = await tempDirPath;
     return File('$path/$fileName').delete();
