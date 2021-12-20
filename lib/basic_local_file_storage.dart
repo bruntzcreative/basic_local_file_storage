@@ -23,10 +23,10 @@ class LocalStorage {
 
   Future<void> clearCache() async {
     final directory = await getTemporaryDirectory();
-    final files = directory.listSync();
+    final files = directory.listSync(recursive: true);
     print(files.length);
     for (var item in files) {
-      await item.delete();
+      await item.delete(recursive: true);
     }
     print(directory.listSync().length);
   }
