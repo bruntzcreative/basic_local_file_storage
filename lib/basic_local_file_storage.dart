@@ -11,6 +11,11 @@ class LocalStorage {
     return directory.path;
   }
 
+  Future<String> get cachePath async {
+    final directory = await getTemporaryDirectory();
+    return directory.path;
+  }
+
   Future<String> get tempDirPath async {
     final directory = await getTemporaryDirectory();
     return directory.path;
