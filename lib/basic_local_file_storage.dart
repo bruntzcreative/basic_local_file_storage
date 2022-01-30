@@ -3,6 +3,7 @@ library basic_local_file_storage;
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
+import 'dart:typed_data';
 import 'package:path_provider/path_provider.dart';
 
 class LocalStorage {
@@ -34,11 +35,19 @@ class LocalStorage {
     return File('$path/$fileName').delete();
   }
 
-  Future<String> writeTempDirFile(
+  Future<String> writeTempDirFileAsString(
       {required String fileName, required String contents}) async {
     final path = await tempDirPath;
     final file = File('$path/$fileName');
     await file.writeAsString(contents);
+    return file.path;
+  }
+
+  Future<String> writeTempDirFileAsBytes(
+      {required String fileName, required Uint8List contents}) async {
+    final path = await tempDirPath;
+    final file = File('$path/$fileName');
+    await file.writeAsBytes(contents);
     return file.path;
   }
 
