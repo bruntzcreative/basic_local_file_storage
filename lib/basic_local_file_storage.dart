@@ -24,6 +24,7 @@ class LocalStorage {
 
   Future<void> clearCache() async {
     final directory = await getTemporaryDirectory();
+    if (!directory.existsSync()) return;
     final files = directory.listSync(recursive: true);
     for (var item in files) {
       await item.delete(recursive: true);
@@ -98,6 +99,7 @@ class LocalStorage {
   //TODO change this to accept different paths instead of just a name
   Future<Directory> createDirectory({required String directoryName}) async {
     final _path = await localPath;
+
     final _directory = Directory('$_path/$directoryName');
     return _directory.create();
   }
