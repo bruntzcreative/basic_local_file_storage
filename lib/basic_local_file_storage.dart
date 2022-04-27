@@ -103,6 +103,12 @@ class LocalStorage {
     return _directory.create();
   }
 
+  Future<Directory> createTempDirectory({required String directoryName}) async {
+    final _path = await tempDirPath;
+    final _directory = Directory('$_path/$directoryName');
+    return _directory.create();
+  }
+
   //Delete all files in the given directory
   Future<void> clearDirectoryFiles({required String path}) {
     final directory = Directory(path);
