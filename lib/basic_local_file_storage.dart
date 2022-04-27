@@ -81,9 +81,20 @@ class LocalStorage {
     return _file.writeAsString(data);
   }
 
+  Future<File> writeFileBytes(
+      {required String filePath, required Uint8List data}) async {
+    final _file = File(filePath);
+    return _file.writeAsBytes(data);
+  }
+
   Future<String> readFile({required String filePath}) async {
     final _file = File(filePath);
     return _file.readAsString();
+  }
+
+  Future<Uint8List> readFileBytes({required String filePath}) async {
+    final _file = File(filePath);
+    return _file.readAsBytes();
   }
 
   String readFileSync({required String filePath}) {
