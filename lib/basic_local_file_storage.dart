@@ -107,6 +107,12 @@ class LocalStorage {
     return _file.delete();
   }
 
+  Future<FileSystemEntity> removeLocalFile({required String fileName}) async {
+    final path = await localPath;
+    final file = File('$path/$fileName');
+    return file.delete();
+  }
+
   //TODO change this to accept different paths instead of just a name
   Future<Directory> createDirectory({required String directoryName}) async {
     final _path = await localPath;
