@@ -6,7 +6,7 @@ import 'dart:math';
 import 'dart:typed_data';
 import 'package:path_provider/path_provider.dart';
 
-class LocalStorage {
+mixin LocalStorage {
   Future<String> get localPath async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
